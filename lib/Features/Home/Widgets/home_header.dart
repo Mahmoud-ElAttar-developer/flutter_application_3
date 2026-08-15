@@ -63,29 +63,18 @@ class _HomeHeaderState extends State<HomeHeader> {
           child: FutureBuilder(
             future: AppLocal.getCachedData(AppLocal.Image_key),
             builder: (context, snapshot) {
-              if (snapshot.data != null) {
-                return CircleAvatar(
-                  radius: 30,
-                  backgroundColor: AppColors.primaryColor,
-                  child: CircleAvatar(
-                    radius: 28,
-                    backgroundImage: (snapshot.data != null)
-                        ? FileImage(File(snapshot.data!)) as ImageProvider
-                        : const AssetImage('assets/abstract-user-flat-4.png'),
-                  ),
-                );
-              } else {
-                return CircleAvatar(
-                  radius: 30,
-                  backgroundColor: AppColors.greyColor,
-                  child: const CircleAvatar(
-                    radius: 28,
-                    backgroundImage: AssetImage(
-                      'assets/abstract-user-flat-4.png',
-                    ),
-                  ),
-                );
-              }
+              return CircleAvatar(
+                radius: 30,
+                backgroundColor: snapshot.data != null
+                    ? AppColors.primaryColor
+                    : AppColors.greyColor,
+                child: CircleAvatar(
+                  radius: 28,
+                  backgroundImage: snapshot.data != null
+                      ? FileImage(File(snapshot.data!)) as ImageProvider
+                      : const AssetImage('assets/abstract-user-flat-4.png'),
+                ),
+              );
             },
           ),
         ),
@@ -93,3 +82,29 @@ class _HomeHeaderState extends State<HomeHeader> {
     );
   }
 }
+
+//  builder: (context, snapshot) {
+//               if (snapshot.data != null) {
+//                 return CircleAvatar(
+//                   radius: 30,
+//                   backgroundColor: AppColors.primaryColor,
+//                   child: CircleAvatar(
+//                     radius: 28,
+//                     backgroundImage: (snapshot.data != null)
+//                         ? FileImage(File(snapshot.data!)) as ImageProvider
+//                         : const AssetImage('assets/abstract-user-flat-4.png'),
+//                   ),
+//                 );
+//               } else {
+//                 return CircleAvatar(
+//                   radius: 30,
+//                   backgroundColor: AppColors.greyColor,
+//                   child: const CircleAvatar(
+//                     radius: 28,
+//                     backgroundImage: AssetImage(
+//                       'assets/abstract-user-flat-4.png',
+//                     ),
+//                   ),
+//                 );
+//               }
+//             },
